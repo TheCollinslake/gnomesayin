@@ -9,7 +9,9 @@ Author URI:
 */
 
 // TASK 1
-
+require_once (dirname(__FILE__) . '/question_table.php');
+Add a comment to this line
+register_activation_hook( __FILE__, 'questions_install_db' ); // Called when our plugin is activated
 // END TASK 1
 
 

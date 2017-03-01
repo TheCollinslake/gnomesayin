@@ -1,5 +1,5 @@
 <?php
-    function answers_install_db() {
+    function questions_install_db() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'gs_question';
 
