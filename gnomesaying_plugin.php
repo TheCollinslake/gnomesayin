@@ -36,7 +36,8 @@ register_activation_hook( __FILE__, 'questions_install_db' ); // Called when our
 
 
 // TASK 3 - INSERT questions hook
-
+require_once (dirname(__FILE__) . '/insert_sample_question.php');
+register_activation_hook( __FILE__, 'insert_sample_question' ); // Called when our plugin is activated
 // END TASK 3
 
 
