@@ -5,22 +5,19 @@
  * Date: 28/02/2017
  * Time: 18:39
  */
-function answers_install() {
+function answers_install_db() {
     global $wpdb;
-
     $table_name = $wpdb->prefix . 'create_answers';
-    $charset_collate = $wpdb->get_charset_collate();
-    $installed_ver = get_option( "sp_db_version" );
 
-    if ( $installed_ver != $sp_db_version ) {
         $sql = "CREATE TABLE $table_name (
-      UNIQUE KEY id (id),
-      user_id mediumint(9) NOT NULL FOREIGN ,
-      answer text NOT NULL,
-      time_stamp DATETIME_INTERVAL_CODE AUTO CURRENT_TIMESTAMP,
-      upvote mediumint(9),
-      question_id mediumint(9) FOREIGN NOT NULL 
+
+                  UNIQUE KEY id (id),
+                  user_id mediumint(9) NOT NULL FOREIGN ,
+                  answer text NOT NULL,
+                  time_stamp DATETIME_INTERVAL_CODE AUTO CURRENT_TIMESTAMP,
+                  upvote mediumint(9),
+                  question_id mediumint(9) FOREIGN NOT NULL 
       
     );";
 
-    }}
+    }
