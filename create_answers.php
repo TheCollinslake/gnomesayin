@@ -7,17 +7,26 @@
  */
 function answers_install_db() {
     global $wpdb;
+    global $sp_db_version;
     $table_name = $wpdb->prefix . 'gs_answer';
 
+        $charset_collate = $wpdb->get_charset_collate();
+    $installed_ver = get_option( "sp_db_version" );
+    
+      if ( $installed_ver != $gs_db_version ) {
         $sql = "CREATE TABLE $table_name (
-                  UNIQUE KEY id (id),
-                  user_id mediumint(9) NOT NULL FOREIGN ,
+                  id mediumint(9) NOT NULL AUTO_INCREMENT,
+                  user_id mediumint(9) NOT NULL,
                   answer text NOT NULL,
-                  time_stamp DATETIME_INTERVAL_CODE AUTO CURRENT_TIMESTAMP,
-                  upvote mediumint(9),
-                  question_id mediumint(9) FOREIGN NOT NULL 
-    );";
+                  time_stamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  up_vote mediumint(9) NOT NULL DEFAULT 0,
+                  question_id mediumint(9) NOT NULL,
+                  UNIQUE KEY id (id)
+        );";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
 
-    }
+    update_option( 'gs_db_version', $gs_db_version );
+  }
 
-
+}
