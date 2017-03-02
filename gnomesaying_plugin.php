@@ -8,6 +8,9 @@ Author: IM4420
 Author URI: 
 */
 
+global $sp_db_version;
+$gs_db_version = '1.3';
+
 // TASK 1
 function welcome() {
         
@@ -24,13 +27,12 @@ function qp_shortcode() {
 
 add_shortcode( 'question_plugin', 'qp_shortcode' );
 
-?>
 // END TASK 1
 
 
 // TASK 2 - CREATE questions hook
-    require_once (dirname(__FILE__) . '/question_table.php');
-Add a comment to this line
+require_once (dirname(__FILE__) . '/question_table.php');
+// Add a comment to this line
 register_activation_hook( __FILE__, 'questions_install_db' ); // Called when our plugin is activated
 // END TASK 2
 
@@ -42,7 +44,9 @@ register_activation_hook( __FILE__, 'insert_sample_question' ); // Called when o
 
 
 // TASK 4 - CREATE questions hook
-
+require_once (dirname(__FILE__) . '/create_answers.php');
+// Add a comment to this line
+register_activation_hook( __FILE__, 'answers_install_db' ); // Called when our plugin is
 // END TASK 4
 
 

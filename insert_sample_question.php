@@ -16,7 +16,3 @@ function insert_sample_question() {
 		) 
 	);
 }
-
-
-
-?>
