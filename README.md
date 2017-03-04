@@ -10,11 +10,13 @@ Version 2.0
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* You must have Wordpress 5.0 or later installed.
+
 
 ### Team Members ###
+Chris Black
+Calvin Bast
+Caleb Collins
+Kevin Firman
+Meg Gauthier
+Travis Roberts
