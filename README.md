@@ -20,3 +20,7 @@ Caleb Collins
 Kevin Firman
 Meg Gauthier
 Travis Roberts
+
+### Resources ###
+https://www.smashingmagazine.com/2011/09/how-to-create-a-wordpress-plugin/
+https://deliciousbrains.com/using-wp-rest-api-wordpress-4-4/
