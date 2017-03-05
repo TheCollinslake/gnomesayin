@@ -20,8 +20,8 @@ function welcome() {
 	} else {
       // User has submit a new question
       if(isset($_POST['question'])) {
-        // Save the question to DB (see admin_options.php)
         // TASK 2.2
+        // Save the question to DB (see admin_options.php)
         
         // END TASK 2.2
       }
@@ -39,6 +39,7 @@ function welcome() {
 function gs_showSubmitQuestionForm() {
   echo "<h3>Enter a new question</h3>";
   // TASK 2.1 - Question form
+  // Input form that POSTS form values to self (see admin_options.php)
   
   // END TASK 2.1
 }
@@ -46,13 +47,17 @@ function gs_showSubmitQuestionForm() {
 function gs_showAnswerList($question_id) {
   echo "<h3>Answers for $question_id</h3>";
   // TASK 3 - Question form
+  // foreach loop that displays answers, query should use $question_id
   
+  
+  // Test with http://localhost:8888/sample-page/?display_question=1
   // END TASK 3
 }
 
 function gs_showQuestionsList() {
   echo "<h3>Recent Questions</h3>";
   // TASK 4 - Question form
+  // foreach loop that displays questions
   
   // END TASK 4
 }
