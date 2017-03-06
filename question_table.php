@@ -1,13 +1,13 @@
 <?php
 function questions_install_db() {
     global $wpdb;
-    global $gs_db_version;
+    global $gq_db_version;
     $table_name = $wpdb->prefix . 'gs_question';
 
     $charset_collate = $wpdb->get_charset_collate();
     $installed_ver = get_option( "gs_db_version" );
 
-  if ( $installed_ver != $gs_db_version ) {
+  if ( $installed_ver != $gq_db_version ) {
 // sql to create table
     $sql = "CREATE TABLE $table_name ( 
         id mediumint(9) NOT NULL AUTO_INCREMENT, 
@@ -22,6 +22,6 @@ function questions_install_db() {
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $sql );
 
-    update_option( 'gs_db_version', $gs_db_version );
+    update_option( 'gq_db_version', $gq_db_version );
   }
 }
