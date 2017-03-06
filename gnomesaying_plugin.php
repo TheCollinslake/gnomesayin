@@ -9,7 +9,8 @@ Author URI:
 */
 
 global $gs_db_version;
-$gs_db_version = '1.4';
+$gq_db_version = '1.5';
+$ga_db_version = '1.5';
 
 function welcome() {
     echo "<h2>Gnome Sayin'</h2>";
