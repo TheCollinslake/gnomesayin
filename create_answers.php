@@ -11,7 +11,7 @@ function answers_install_db() {
     $table_name = $wpdb->prefix . 'gs_answer';
 
         $charset_collate = $wpdb->get_charset_collate();
-    $installed_ver = get_option( "gs_db_version" );
+    $installed_ver = get_option( "ga_db_version" );
     
       if ( $installed_ver != $ga_db_version ) {
         $sql = "CREATE TABLE $table_name (

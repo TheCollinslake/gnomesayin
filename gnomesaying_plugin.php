@@ -8,9 +8,10 @@ Author: IM4420
 Author URI: 
 */
 
-global $gs_db_version;
-$gq_db_version = '1.5';
-$ga_db_version = '1.5';
+global $gq_db_version;
+global $ga_db_version;
+$gq_db_version = '1.6';
+$ga_db_version = '1.6';
 
 function welcome() {
     echo "<h2>Gnome Sayin'</h2>";

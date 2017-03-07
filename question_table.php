@@ -5,7 +5,7 @@ function questions_install_db() {
     $table_name = $wpdb->prefix . 'gs_question';
 
     $charset_collate = $wpdb->get_charset_collate();
-    $installed_ver = get_option( "gs_db_version" );
+    $installed_ver = get_option( "gq_db_version" );
 
   if ( $installed_ver != $gq_db_version ) {
 // sql to create table
