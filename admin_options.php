@@ -9,12 +9,6 @@ echo "<input type='text' name='question'/>";
 echo "<button type='submit'>Submit</button>";
 echo "</form>";
 
-echo "<h2>Delete a question</h2>";
-
-echo '<form action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
-echo "<input type='text' name='question_id'/>";
-echo "<button type='submit'>Delete</button>";
-echo "</form>";
 
 //Copy and paste the below loop and update the question_text part to say question_id
 
@@ -34,5 +28,26 @@ if(isset($_POST['question'])) {
 
 }
 
+echo "<h2>Delete a question</h2>";
+
+echo '<form action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
+echo "<input type='text' name='question_id'/>";
+echo "<button type='submit'>Delete</button>";
+echo "</form>";
+
+if(isset($_POST['question_id'])) {
+    echo "You have now removed the selected content.";
+    $question_id = question_id;
+	
+	$table_name = $wpdb->prefix . 'gs_question';
+	
+	$wpdb->delete( 
+		$table_name, 
+		array( 
+			'id' => $_POST['question_id']
+		) 
+	);
+
+}
 
 ?>
