@@ -9,6 +9,15 @@ echo "<input type='text' name='question'/>";
 echo "<button type='submit'>Submit</button>";
 echo "</form>";
 
+echo "<h2>Delete a question</h2>";
+
+echo '<form action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
+echo "<input type='text' name='question_id'/>";
+echo "<button type='submit'>Delete</button>";
+echo "</form>";
+
+//Copy and paste the below loop and update the question_text part to say question_id
+
 if(isset($_POST['question'])) {
     echo "Thanks for asking, your question has been posted!";
     $user_id = 1;
@@ -22,6 +31,8 @@ if(isset($_POST['question'])) {
 			'question_text' => $_POST['question']
 		) 
 	);
+
 }
+
 
 ?>
