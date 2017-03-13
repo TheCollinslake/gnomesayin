@@ -100,6 +100,13 @@ require_once (dirname(__FILE__) . '/insert_sample_answer.php');
 // Called when our plugin is activated
 register_activation_hook( __FILE__, 'insert_sample_answer' ); 
 
+/**
+ * API setup.
+ */
+// API hook
+require_once (dirname(__FILE__) . '/gnome_api.php');
+// Called when our plugin is activated
+add_action( 'rest_api_init', 'gs_register_api_hooks' );
 
 /**
  * Admin page setup.
@@ -163,6 +170,9 @@ function gs_showLoginForm() {
  * Proper way to enqueue scripts and styles
  */
 function wpdocs_theme_name_scripts() {
+  // WP JavaScript file required for AJAX authentication
+  // https://github.com/WP-API/client-js
+  wp_enqueue_script( 'wp-api' );
   wp_register_style('gnome_styles', plugins_url('style.css',__FILE__ ));
   wp_enqueue_style('gnome_styles');
   wp_enqueue_script( 'jquery' );
