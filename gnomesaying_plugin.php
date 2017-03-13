@@ -44,6 +44,10 @@ function gs_showSubmitQuestionForm() {
   // Input form that POSTS form values to self (see admin_options.php)
   
   // END TASK 2.1
+  echo '<form id="question_form" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
+  echo "<input id='question_text' type='text' name='question'/>";
+  echo "<button type='submit'>Submit</button>";
+  echo "</form>";
 }
 
 function gs_showAnswerList($question_id) {
@@ -62,6 +66,7 @@ function gs_showQuestionsList() {
   // foreach loop that displays questions
   
   // END TASK 4
+  echo "<div id='question_table'></div>";
 }
 
 function qp_shortcode() {

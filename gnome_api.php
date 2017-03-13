@@ -12,6 +12,7 @@ function gs_register_api_hooks() {
   ) );
     
   register_rest_route( $namespace, '/questions/', array(
+    // EDITABLE the same as 'POST' or 'PUT'
     'methods'   => WP_REST_Server::EDITABLE,
     'callback' => 'gs_add_question',
   ) );
@@ -19,6 +20,12 @@ function gs_register_api_hooks() {
   register_rest_route( $namespace, '/answers/', array(
       'methods' => 'GET',
       'callback' => 'gs_get_answers',
+  ) );
+  
+  register_rest_route( $namespace, '/answers/', array(
+    // EDITABLE the same as 'POST' or 'PUT'
+    'methods'   => WP_REST_Server::EDITABLE,
+    'callback' => 'gs_add_answer',
   ) );
 }
 
@@ -58,7 +65,7 @@ function gs_add_question($request_data) {
     $return = array(
       'error' => 'Invalid credentials.'
     );
-    $response = new WP_REST_Response( $return, 404 );
+    $response = new WP_REST_Response( $return, 401 );
     $response->header( 'Access-Control-Allow-Origin', apply_filters( 'gs_access_control_allow_origin','*' ) );
     $response->header('Content-Type', 'application/json');
   }
@@ -131,6 +138,51 @@ function gs_get_answers($request_data) {
   $response = new WP_REST_Response( $return, 200 );
   $response->header( 'Access-Control-Allow-Origin', apply_filters( 'gs_access_control_allow_origin','*' ) );
   $response->header('Content-Type', 'application/json');
+  
+  return $response;
+}
+
+/**
+ * Adds new question to the database. User must be logged in.
+ *
+ * METHOD: PUT
+ * URL: http://localhost:8888/wp-json/gnomesayin/v1/questions
+ */
+function gs_add_answer($request_data) {
+  global $wpdb;
+  $parameters = $request_data->get_params();
+  $validLogin = is_user_logged_in();
+  
+  if($validLogin) {
+    // User is authenticated, insert data into database
+    $user_id = get_current_user_id();
+    $return[] = array(
+      'logged_in' => $validLogin,
+      'user_id' => $user_id,
+      'answer' => $parameters["answer"]
+    );
+    
+    $table_name = $wpdb->prefix . 'gs_answer';
+    $wpdb->insert( 
+		$table_name, 
+		array( 
+			'user_id' => $user_id, 
+            'question_id' => $parameters["question_id"],
+			'answer' => $parameters["answer"]
+		) 
+	);
+    $return[] = $parameters;
+    $response = new WP_REST_Response( $return, 200 );
+    $response->header('Content-Type', 'application/json');
+  } else {
+    // User not logged in, throw an error
+    $return = array(
+      'error' => 'Invalid credentials.'
+    );
+    $response = new WP_REST_Response( $return, 401 );
+    $response->header( 'Access-Control-Allow-Origin', apply_filters( 'gs_access_control_allow_origin','*' ) );
+    $response->header('Content-Type', 'application/json');
+  }
   
   return $response;
 }
