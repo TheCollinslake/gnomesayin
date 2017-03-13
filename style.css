@@ -1,8 +1,65 @@
 /* TASK 5 - Add some styling */
 
 body {
-    font-family: 'Arial';
-    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
 }
+
+h1 {
+    color: #0C3C5E;
+    font-family: sans-serif;
+    font-size: 32pt;
+    font-weight: 600;
+}
+
+h2{
+    color: #42612E;
+    font-family: sans-serif;
+    font-size: 24pt;
+    font-weight: 600;
+}
+
+h3 {
+    color: #7D1519;
+    font-family: sans-serif;
+    font-size: 18pt;
+    font-weight: 300;
+}
+
+h4 {
+    color: #5B5B5D;
+    font-family: sans-serif;
+    font-size: 14pt;
+    font-weight: 300;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: 12pt;
+}
+
+button1 {
+    background-color: #3B71B3;
+    color: white;
+}
+
+button2 {
+    background-color: #9E3535;
+    color: white;
+}
+
+button3 {
+    background-color: #fff;
+    border-radius: 50px;
+    border: 2px solid #3B71B3;
+}
+
+button4 {
+    background-color: #fff;
+    border-radius: 50px;
+    border: 2px solid #9E3535;
+}
+
+
 
 /* Feel free to add mor styling */
