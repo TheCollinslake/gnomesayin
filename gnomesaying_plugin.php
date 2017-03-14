@@ -14,59 +14,62 @@ $gq_db_version = '1.6';
 $ga_db_version = '1.6';
 
 function welcome() {
+    echo "<div class='gnome_wrapper'>";
     echo "<h2>Gnome Sayin'</h2>";
     $validLogin = is_user_logged_in();
 	if(!$validLogin) {
-      // You must be logged in to submit a question
+      // You must be logged in to submit a form
       gs_showLoginForm();
 	} else {
-      // User has submit a new question
-      if(isset($_POST['question'])) {
-        // TASK 2.2
-        // Save the question to DB (see admin_options.php)
-        
-        // END TASK 2.2
-      }
+      // Create forms
       gs_showSubmitQuestionForm();
+      gs_showAnswerForm();
     }
   
-    if(isset($_GET['display_question'])) {
-      $question_id = sanitize_text_field($_GET['display_question']);
-      gs_showAnswerList($question_id);
-    } else {
-      gs_showQuestionsList();
-    }
+    gs_showAnswerList();
+    gs_showQuestionsList();
+    echo "</div>";
 }
 
+/**
+ * Form that allows a user to submit an answer.
+ */
+function gs_showAnswerForm() {
+  echo "<div id='aform_container'>";
+  echo "<button id='back_button'>BACK</button>";
+  echo "<h3 id='question_headline'>What's the Question???</h3>";
+  echo '<form id="answer_form" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
+  echo "Your Answer: <input id='answer_text' type='text' name='answer'/>";
+  echo "<button type='submit'>Submit</button>";
+  echo "</form>";
+  echo "</div>";
+}
+
+/**
+ * Form that allows a user to submit a question.
+ */
 function gs_showSubmitQuestionForm() {
+  echo "<div id='qform_container'>";
   echo "<h3>Enter a new question</h3>";
-  // TASK 2.1 - Question form
-  // Input form that POSTS form values to self (see admin_options.php)
-  
-  // END TASK 2.1
   echo '<form id="question_form" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
   echo "<input id='question_text' type='text' name='question'/>";
   echo "<button type='submit'>Submit</button>";
   echo "</form>";
+  echo "</div>";
 }
 
-function gs_showAnswerList($question_id) {
-  echo "<h3>Answers for $question_id</h3>";
-  // TASK 3 - Question form
-  // foreach loop that displays answers, query should use $question_id
-  
-  
-  // Test with http://localhost:8888/sample-page/?display_question=1
-  // END TASK 3
+function gs_showAnswerList() {
+  echo "<div id='answer_container'>";
+  echo "<h3>Answers:</h3>";
+  echo "<div id='answer_table'>Select a question to replace this text.</div>";
+  echo "</div>";
 }
 
 function gs_showQuestionsList() {
+  echo "<div id='question_container'>";
   echo "<h3>Recent Questions</h3>";
-  // TASK 4 - Question form
-  // foreach loop that displays questions
-  
-  // END TASK 4
-  echo "<div id='question_table'></div>";
+  echo "<div id='question_table'>Loading... please wait.</div>";
+  echo "</div>";
 }
 
 function qp_shortcode() {
