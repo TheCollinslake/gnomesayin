@@ -1,6 +1,6 @@
 /* TASK 5 - Add some styling */
 
-body {
+.gnome_wrapper body {
     font-family: 'Arial', sans-serif;
     font-size: 12px;
 }
@@ -12,7 +12,7 @@ h1 {
     font-weight: 600;
 }
 
-h2{
+.gnome_wrapper h2{
     color: #42612E;
     font-family: sans-serif;
     font-size: 24pt;
@@ -26,14 +26,14 @@ h3 {
     font-weight: 300;
 }
 
-h4 {
+.gnome_wrapper h4 {
     color: #5B5B5D;
     font-family: sans-serif;
     font-size: 14pt;
     font-weight: 300;
 }
 
-p {
+.gnome_wrapper p {
     font-family: sans-serif;
     font-size: 12pt;
 }
