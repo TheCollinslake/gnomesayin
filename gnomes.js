@@ -1,14 +1,16 @@
 var selectedQuestionId = 0;
-
+var url = "";
 // We can't use $ with Wordpress!
 jQuery(document).ready(function() {
+  url = WPURLS.siteurl;
+  console.log(url);
   console.log("Script sourced. Gnomesayin'?");
   refreshQuestions();
   
   jQuery(".answer_container").hide();
   jQuery("#aform_container").hide();
   addClickHandlers();
- 
+
 });
 
 function addClickHandlers() {
@@ -52,7 +54,7 @@ function addClickHandlers() {
 
 function upvoteQuestion(id) {
   jQuery.ajax({
-    url: "http://localhost:8888/wp-json/gnomesayin/v1/questions/upvote/",
+    url: url + "/wp-json/gnomesayin/v1/questions/upvote/",
     method: "POST",
     data: { question_id: id },
     success: function(response) {
@@ -63,7 +65,7 @@ function upvoteQuestion(id) {
 
 function upvoteAnswer(id) {
   jQuery.ajax({
-    url: "http://localhost:8888/wp-json/gnomesayin/v1/answers/upvote/",
+    url: url + "/wp-json/gnomesayin/v1/answers/upvote/",
     method: "POST",
     data: { answer_id: id },
     success: function(response) {
@@ -77,7 +79,7 @@ function refreshAnswers(id) {
   
   // Get answers
   jQuery.ajax({
-    url: "http://localhost:8888/wp-json/gnomesayin/v1/answers/",
+    url: url + "/wp-json/gnomesayin/v1/answers/",
     method: "GET",
     data: { question_id: id },
     success: function(response) {
@@ -98,7 +100,7 @@ function refreshAnswers(id) {
 function submitQuestion(question_text) {
   // Add question
   jQuery.ajax({
-    url: "http://localhost:8888/wp-json/gnomesayin/v1/questions/",
+    url: url + "/wp-json/gnomesayin/v1/questions/",
     method: "POST",
     // https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
     beforeSend: function ( xhr ) {
@@ -116,7 +118,7 @@ function submitQuestion(question_text) {
 function submitAnswer(answer_text) {
   // Add answer
   jQuery.ajax({
-    url: "http://localhost:8888/wp-json/gnomesayin/v1/answers/",
+    url: url + "/wp-json/gnomesayin/v1/answers/",
     method: "POST",
     // https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
     beforeSend: function ( xhr ) {
@@ -135,7 +137,7 @@ function refreshQuestions() {
   
   // Get questions
   jQuery.ajax({
-    url: "http://localhost:8888/wp-json/gnomesayin/v1/questions/",
+    url: url + "/wp-json/gnomesayin/v1/questions/",
     method: "GET",
     success: function(response) {
       // Step 1: Empty existing content
@@ -146,7 +148,7 @@ function refreshQuestions() {
         console.log(question.question);
         jQuery("#question_table").append("<div class='question_row'>");
         jQuery("#question_table").append("<p>" + question.question + "</p>");
-        jQuery("#question_table").append("<button class='upvote' data-id='" + question.id + "'>upvote</button> Upvotes: " + question.up_vote + " <button class='answers' data-id='" + question.id + "'>View Answers (" + question.answer_count + ")</button>");
+        jQuery("#question_table").append("<button class='upvote' data-id='" + question.id + "'>upvote </button> Upvotes: " + question.up_vote + "<br><button class='answers' data-id='" + question.id + "'>View Answers (" + question.answer_count + ")</button>");
         jQuery("#question_table").append("</div>");
         // Step 2: Add each row back to the screen
       });

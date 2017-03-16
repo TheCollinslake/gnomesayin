@@ -60,6 +60,15 @@ button4 {
     border: 2px solid #9E3535;
 }
 
+.answers {
+    width:50%;
+    margin:10px 0 10px;
+    background-color : #3B71B3
+}
 
+.upvote {
+    width:50%;
+    background-color : #3B71B3
+}
 
 /* Feel free to add mor styling */
