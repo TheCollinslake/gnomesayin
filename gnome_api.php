@@ -148,9 +148,7 @@ function gs_get_questions() {
   global $wpdb;
   $table_name = $wpdb->prefix . 'gs_question';
   $user_table = $wpdb->prefix . 'users';
-  $sql_query = "SELECT * FROM $table_name gs INNER JOIN $user_table user ON user.ID = gs.user_id ORDER BY gs.reg_date DESC;";
-
-
+  $sql_query = "SELECT * FROM $table_name gs INNER JOIN $user_table user ON user.ID = gs.user_id;";
   $gs_rows = $wpdb->get_results( $sql_query );
   $return = array();
   foreach ( $gs_rows as $row ) 
@@ -187,7 +185,7 @@ function gs_get_answers($request_data) {
 
   $table_name = $wpdb->prefix . 'gs_answer';
   $user_table = $wpdb->prefix . 'users';
-  $sql_query = "SELECT * FROM $table_name answer INNER JOIN $user_table user ON user.ID = answer.user_id WHERE answer.question_id = $safe_id;";
+  $sql_query = "SELECT * FROM $table_name answer INNER JOIN $user_table user ON user.ID = answer.user_id WHERE answer.question_id = $safe_id LIMIT 20;";
   $gs_rows = $wpdb->get_results( $sql_query );
   $return = array();
   foreach ( $gs_rows as $row ) 
