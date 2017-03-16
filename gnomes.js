@@ -24,9 +24,9 @@ function addClickHandlers() {
   });
   // Buttons
   jQuery("#question_table").on('click', '.answers', function(){
-    console.log($(this).data('id'));
+    console.log(jQuery(this).data('id'));
     jQuery("#answer_table").empty();
-    refreshAnswers($(this).data('id'));
+    refreshAnswers(jQuery(this).data('id'));
     jQuery("#qform_container").hide();
     jQuery("#question_container").hide();
     
@@ -41,12 +41,12 @@ function addClickHandlers() {
     jQuery("#answer_container").hide();
   });
   jQuery("#question_table").on('click', '.upvote', function(){
-    console.log($(this).data('id'));
-    upvoteQuestion($(this).data('id'));
+    console.log(jQuery(this).data('id'));
+    upvoteQuestion(jQuery(this).data('id'));
   });
     jQuery("#answer_table").on('click', '.upvote', function(){
-    console.log($(this).data('id'));
-    upvoteAnswer($(this).data('id'));
+    console.log(jQuery(this).data('id'));
+    upvoteAnswer(jQuery(this).data('id'));
   });
 }
 
