@@ -85,6 +85,10 @@ function refreshAnswers(id) {
     success: function(response) {
       // Normally $("#answer_table")
       jQuery("#answer_table").empty();
+        console.log("number_of_answers"+response.length);
+      if(response.length == 0){
+          jQuery("#answer_table").append("There are currently no answers.") 
+      } 
       response.forEach(function(answer) {
         console.log(answer);
         jQuery("#answer_table").append("<div class='answer_row'>");
