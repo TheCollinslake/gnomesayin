@@ -186,5 +186,6 @@ function wpdocs_theme_name_scripts() {
   wp_enqueue_script( 'jquery' );
   wp_register_script( 'gnome_js', plugins_url('gnomes.js',__FILE__ ));
   wp_enqueue_script('gnome_js');
+  wp_localize_script('gnome_js', 'WPURLS', array( 'siteurl' => get_option('siteurl') ));
 }
 add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
