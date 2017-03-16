@@ -55,8 +55,11 @@ function gs_add_question($request_data) {
   if($validLogin) {
     // User is authenticated, insert data into database
     $user_id = get_current_user_id();
+    if($user_id == 0) {
+      $user_id = 1;
+    }
     $return[] = array(
-      'logged_in' => $validLogin,
+      'logged_in' => is_user_logged_in(),
       'user_id' => $user_id,
       'question' => $parameters["question"]
     );
@@ -222,8 +225,11 @@ function gs_add_answer($request_data) {
   if($validLogin) {
     // User is authenticated, insert data into database
     $user_id = get_current_user_id();
+    if($user_id == 0) {
+      $user_id = 1;
+    }
     $return[] = array(
-      'logged_in' => $validLogin,
+      'logged_in' => is_user_logged_in(),
       'user_id' => $user_id,
       'answer' => $parameters["answer"]
     );

@@ -104,7 +104,9 @@ function submitQuestion(question_text) {
     method: "POST",
     // https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
     beforeSend: function ( xhr ) {
-        //xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+      if(typeof wpApiSettings != "undefined") {
+        xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+      }
     },
     data: { question: question_text },
     success: function(data) {
@@ -122,7 +124,9 @@ function submitAnswer(answer_text) {
     method: "POST",
     // https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
     beforeSend: function ( xhr ) {
-        //xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+      if(typeof wpApiSettings != "undefined") {
+        xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+      }
     },
     data: { question_id: selectedQuestionId, answer: answer_text },
     success: function(data) {
