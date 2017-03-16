@@ -148,7 +148,9 @@ function gs_get_questions() {
   global $wpdb;
   $table_name = $wpdb->prefix . 'gs_question';
   $user_table = $wpdb->prefix . 'users';
-  $sql_query = "SELECT * FROM $table_name gs INNER JOIN $user_table user ON user.ID = gs.user_id;";
+  $sql_query = "SELECT * FROM $table_name gs INNER JOIN $user_table user ON user.ID = gs.user_id ORDER BY gs.reg_date DESC;";
+
+
   $gs_rows = $wpdb->get_results( $sql_query );
   $return = array();
   foreach ( $gs_rows as $row ) 
