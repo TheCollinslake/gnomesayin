@@ -146,7 +146,7 @@ function refreshQuestions() {
         console.log(question.question);
         jQuery("#question_table").append("<div class='question_row'>");
         jQuery("#question_table").append("<p>" + question.question + "</p>");
-        jQuery("#question_table").append("<button class='upvote' data-id='" + question.id + "'>upvote</button> Upvotes: " + question.up_vote + " <button class='answers' data-id='" + question.id + "'>View Answers (" + question.answer_count + ")</button>");
+        jQuery("#question_table").append("<button class='upvote' data-id='" + question.id + "'>upvote </button> Upvotes: " + question.up_vote + "<br><button class='answers' data-id='" + question.id + "'>View Answers (" + question.answer_count + ")</button>");
         jQuery("#question_table").append("</div>");
         // Step 2: Add each row back to the screen
       });
