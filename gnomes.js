@@ -117,16 +117,17 @@ function submitQuestion(question_text) {
       console.log(data);
       refreshQuestions();
       clearQuestion();
+        
 
     }
   });
   // End add question
 }
 
-//function clearQuestion() {
-//      jQuery(".question_row > p").val('');
-//        console.log("clearQuestion fired off");
-//};
+function clearQuestion() {
+      jQuery("#question_text").val('');
+        console.log("clearQuestion fired off");
+};
 
 function submitAnswer(answer_text) {
   // Add answer
