@@ -116,10 +116,18 @@ function submitQuestion(question_text) {
     success: function(data) {
       console.log(data);
       refreshQuestions();
+      clearQuestion();
+        
+
     }
   });
   // End add question
 }
+
+function clearQuestion() {
+      jQuery("#question_text").val('');
+        console.log("clearQuestion fired off");
+};
 
 function submitAnswer(answer_text) {
   // Add answer
@@ -154,10 +162,12 @@ function refreshQuestions() {
       response.forEach(function(question) {
         console.log(question);
         console.log(question.question);
+   
         jQuery("#question_table").append("<div class='question_row'>");
         jQuery("#question_table").append("<p>" + question.question + "</p>");
-        jQuery("#question_table").append("<button class='upvote' data-id='" + question.id + "'>upvote </button> Upvotes: " + question.up_vote + "<br><button class='answers' data-id='" + question.id + "'>View Answers (" + question.answer_count + ")</button>");
+jQuery("#question_table").append("<button class='upvote' data-id='" + question.id + "'><img src='" + url + "/wp-content/plugins/gnomesayin/icons/ic_thumb_up_black_24dp_1x.png' style='width:32px; height:32px;'> upvote </button> Upvotes: " + question.up_vote + "<br><button class='answers' data-id='" + question.id + "'>View Answers (" + question.answer_count + ")</button>");
         jQuery("#question_table").append("</div>");
+          
         // Step 2: Add each row back to the screen
       });
     }
