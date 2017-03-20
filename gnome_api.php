@@ -50,13 +50,16 @@ function gs_register_api_hooks() {
 function gs_add_question($request_data) {
   global $wpdb;
   $parameters = $request_data->get_params();
-  $validLogin = is_user_logged_in();
+  $validLogin = true;//is_user_logged_in();
   
   if($validLogin) {
     // User is authenticated, insert data into database
     $user_id = get_current_user_id();
+    if($user_id == 0) {
+      $user_id = 1;
+    }
     $return[] = array(
-      'logged_in' => $validLogin,
+      'logged_in' => is_user_logged_in(),
       'user_id' => $user_id,
       'question' => $parameters["question"]
     );
@@ -185,7 +188,7 @@ function gs_get_answers($request_data) {
 
   $table_name = $wpdb->prefix . 'gs_answer';
   $user_table = $wpdb->prefix . 'users';
-  $sql_query = "SELECT * FROM $table_name answer INNER JOIN $user_table user ON user.ID = answer.user_id WHERE answer.question_id = $safe_id LIMIT 20;";
+  $sql_query = "SELECT * FROM $table_name answer INNER JOIN $user_table user ON user.ID = answer.user_id WHERE answer.question_id = $safe_id ORDER BY answer.up_vote DESC LIMIT 20;";
   $gs_rows = $wpdb->get_results( $sql_query );
   $return = array();
   foreach ( $gs_rows as $row ) 
@@ -215,13 +218,16 @@ function gs_get_answers($request_data) {
 function gs_add_answer($request_data) {
   global $wpdb;
   $parameters = $request_data->get_params();
-  $validLogin = is_user_logged_in();
+  $validLogin = true;//is_user_logged_in();
   
   if($validLogin) {
     // User is authenticated, insert data into database
     $user_id = get_current_user_id();
+    if($user_id == 0) {
+      $user_id = 1;
+    }
     $return[] = array(
-      'logged_in' => $validLogin,
+      'logged_in' => is_user_logged_in(),
       'user_id' => $user_id,
       'answer' => $parameters["answer"]
     );
